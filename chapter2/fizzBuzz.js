@@ -3,7 +3,7 @@
 
     module.exports = {
       fizzBuzz: function FizzBuzz() {
-        for (var a = 1; a <= 100; a++) {
+        for ( var a = 1; a <= 100; a++ ) {
           if ( a % 3 === 0 ) {
             if ( a % 5 === 0 ) {
               console.log('FizzBuzz');
@@ -20,6 +20,6 @@
           }
         }
       }
-    }
+    };
 
 })();
