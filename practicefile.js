@@ -49,12 +49,17 @@
 // console.log(todoList);
 
 var obj = {
-  test1: function test1() {
-    console.log('test 1 heeft gedraaid!');
+  test1: function test1(trueVariable, first, second) {
+    return trueVariable ? 1 < 2 : 1 > 2;
   },
   test2: function test2() {
-    this.test1();
+    var a = 0;
+    while ( this.test1(true, 1, 2) && a < 1 ) {
+      console.log('while draait!');
+      a++;
+      // this.test1() &&
+    }
   }
-}
+};
 
 obj.test2();

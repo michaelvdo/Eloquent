@@ -29,8 +29,8 @@
     var sumofrange = require('./chapter4/sumofrange.js');
 
     // Uncomment these calls to run the solutions for the relevant assignments
-    console.log(sumofrange.range(1, 3));
+    // console.log(sumofrange.range(5, 2, -1));
     // console.log(sumofrange.sum([1, 2, 3, 4, 1]));
-    // console.log(sumofrange.sum(sumofrange.range(1, 10, 2)));
+    // console.log(sumofrange.sum(sumofrange.range(1, 10)));
 
 })();
