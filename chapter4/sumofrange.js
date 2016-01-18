@@ -5,15 +5,15 @@
       range: function range(start, end, step) {
         var list       = [],
             current    = start,
-            countDown  = start < end;
+            countUp  = start < end;
 
         if ( start === end ) {
           list.push(start);
         } else {
-          while ( this.condition(countDown, current, end) ) {
+          while ( this.condition(countUp, current, end) ) {
             list.push(current);
             if ( step === undefined ) {
-              if ( countDown ) {
+              if ( countUp ) {
                 current++;
               } else {
                 current--;
@@ -25,8 +25,8 @@
         }
         return list;
       },
-      condition: function condition(countDown, current, end) {
-        return countDown ? current <= end : current >= end;
+      condition: function condition(countUp, current, end) {
+        return countUp ? current <= end : current >= end;
       },
       sum: function sum(array) {
         var counter   = 0,
