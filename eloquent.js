@@ -1,8 +1,8 @@
-(function () {
+(function(){
 
     "use strict";
 
-    // var practicefile = require('./practicefile.js');
+    var practicefile = require('./practicefile.js');
 
     // .js files for the assignments from chapter 2
     var loopTriangle = require('./chapter2/loopTriangle.js'),
@@ -16,31 +16,40 @@
 
     // .js files for the assignments from chapter 3
     var minimum = require('./chapter3/minimum.js'),
-        iseven = require('./chapter3/iseven.js'),
-        beancounting = require('./chapter3/beancounting.js');
+        isEven = require('./chapter3/isEven.js'),
+        beanCounting = require('./chapter3/beanCounting.js');
 
     // Uncomment these calls to run the solutions for the relevant assignments
-    // console.log(minimum.minimum(-10, -10));
-    // console.log(iseven.iseven(50));
-    // console.log(beancounting.countBs('blaBlaBla'));
-    // console.log(beancounting.countChar('kakkerkak', 'k'));
+    // console.log(minimum.minimum(-10, 10));
+    // console.log(isEven.isEven(71));
+    // console.log(beanCounting.countBs('blaBlaBla'));
+    // console.log(beanCounting.countChar('kakkerkak', 'k'));
 
     // .js files for the assignments from chapter 4
-    var sumofrange = require('./chapter4/sumofrange.js'),
-        reversearray = require('./chapter4/reversearray.js'),
-        alist = require('./chapter4/alist.js');
+    var sumOfRange = require('./chapter4/sumOfRange.js'),
+        reverseArray = require('./chapter4/reverseArray.js'),
+        aList = require('./chapter4/aList.js'),
+        deepComparison = require('./chapter4/deepComparison.js');
 
     // Uncomment these calls to run the solutions for the relevant assignments
-    // console.log(sumofrange.range(5, 2, -1));
-    // console.log(sumofrange.sum([1, 2, 3, 4, 1]));
-    // console.log(sumofrange.sum(sumofrange.range(1, 10)));
+    // console.log(sumOfRange.range(5, 2, -1));
+    // console.log(sumOfRange.sum([1, 2, 3, 4, 1]));
+    // console.log(sumOfRange.sum(sumOfRange.range(1, 10)));
 
-    // console.log(reversearray.reversearray(['A', 'B', 'C']));
+    // console.log(reverseArray.reverseArray(['A', 'B', 'C']));
     // var arrayValue = [1, 2, 3, 4, 5, 6];
     // console.log(arrayValue);
-    // reversearray.reverseinplace(arrayValue);
+    // reverseArray.reverseInPlace(arrayValue);
     // console.log(arrayValue);
 
-    console.log(alist.arraytolist([10, 20, 30, 40, 50]));
+    // console.log(aList.arrayToList([10, 20]));
+    // console.log(aList.prepend(10, aList.prepend(20, null)));
+    // console.log(aList.listToArray(aList.arrayToList([10, 20, 30, 40, 50])));
+
+    // var obj1 = {here: {is: 'an'}, object: 2};
+    // var obj2 = {here: {is: 'an'}, object: 2};
+    // var obj3 = {here: 1, object: 2};
+    // console.log(deepComparison.deepEqual(obj1, obj2));
+    // console.log(deepComparison.deepEqual(1, 2));
 
 })();

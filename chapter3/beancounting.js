@@ -2,7 +2,7 @@
     "use strict";
 
     module.exports = {
-      countBs: function countBs(string) {
+      countBs: function(string) {
         var counter = 0; //counts number of B's
         for ( var a = 0; a < string.length; a++ ) {
           if ( string.charAt(a) === 'B' ) {

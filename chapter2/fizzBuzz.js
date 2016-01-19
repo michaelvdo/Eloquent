@@ -2,7 +2,7 @@
     "use strict";
 
     module.exports = {
-      fizzBuzz: function FizzBuzz() {
+      fizzBuzz: function() {
         for ( var a = 1; a <= 100; a++ ) {
           if ( a % 3 === 0 ) {
             if ( a % 5 === 0 ) {

@@ -2,7 +2,7 @@
     "use strict";
 
     module.exports = {
-      grid: function Grid(size) {
+      grid: function(size) {
         var grid = '';
         for( var a = 0; a < size; a++ ) {
           for( var b = 0; b < size; b++ ) {
