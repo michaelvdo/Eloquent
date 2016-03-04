@@ -52,4 +52,9 @@
     // console.log(deepComparison.deepEqual(obj1, obj2));
     // console.log(deepComparison.deepEqual(1, 2));
 
+    // .js files for the assignments from chapter 5
+    var flattening = require('./chapter5/flattening.js');
+
+    console.log(flattening.flattening([[1, 2, 3], [4, 5], [6]]));
+
 })();

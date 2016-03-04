@@ -1,4 +1,5 @@
 (function(){
+
   'use strict';
 
   // function power(base, exponent) {
@@ -71,6 +72,20 @@
   // Chapter 5
   //
 
+  require('./chapter5/ancestry.js');
+
+  // function forEach(array, action) {
+  //   for (var i = 0; i < array.length; i++) {
+  //     action(array[i]);
+  //   }
+  // }
+  //
+  // var numbers = [1, 2, 3, 4, 5], sum = 0;
+  // forEach(numbers, function(number) {
+  //   sum += number;
+  // });
+  // console.log(sum);
+
   // function greaterThan(a) {
   //   return function(b) {
   //     return b > a;
@@ -80,15 +95,15 @@
   // var greaterThan10 = greaterThan(10);
   // console.log(greaterThan10(9));
 
-  function noisy(f) {
-    return function(arg) {
-      console.log("calling with", arg);
-      var val = f(arg);
-      console.log("called with", arg, "- got", val);
-      return val;
-    };
-  }
-  noisy(Boolean)(1);
+  // function noisy(f) {
+  //   return function(arg) {
+  //     console.log("calling with", arg);
+  //     var val = f(arg);
+  //     console.log("called with", arg, "- got", val);
+  //     return val;
+  //   };
+  // }
+  // noisy(Boolean)(1);
 
 })();
 
