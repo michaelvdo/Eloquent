@@ -105,6 +105,44 @@
   // }
   // noisy(Boolean)(1);
 
+  //
+  // Ch. 5 assignment 2 data
+  //
+
+  // function average(array) {
+  // function plus(a, b) { return a + b; }
+  // return array.reduce(plus) / array.length;
+  // }
+  //
+  // var byName = {};
+  // ancestry.forEach(function(person) {
+  // byName[person.name] = person;
+  // });
+  //
+  // // Your code here.
+  //
+  // function hasKnownMother(value, index, array) {
+  // if (byName[array[index].mother]) {
+  //       console.log(array[index].mother);
+  //     return array[index].mother;
+  //   }
+  //   else
+  //     return false;
+  // }
+  //
+  // var filteredAncestry = ancestry.filter(hasKnownMother);
+  //
+  // console.log(ancestry[17]);
+  // //console.log(ancestry);
+  // //console.log(byName);
+  // console.log(filteredAncestry);
+
+// → 31.2
+
+    //
+    // end Ch. 5 assignment 2 data
+    //
+
 })();
 
 // http://eloquentjavascript.net/05_higher_order.html#h_1BJbwiI0gI

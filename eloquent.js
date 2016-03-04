@@ -53,8 +53,11 @@
     // console.log(deepComparison.deepEqual(1, 2));
 
     // .js files for the assignments from chapter 5
-    var flattening = require('./chapter5/flattening.js');
+    var flattening = require('./chapter5/flattening.js'),
+        motherChild = require('./chapter5/motherChild.js');
 
-    console.log(flattening.flattening([[1, 2, 3], [4, 5], [6]]));
+    // console.log(flattening.flattening([[1, 2, 3], [4, 5], [6]]));
+
+
 
 })();
