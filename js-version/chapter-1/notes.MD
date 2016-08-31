@@ -19,6 +19,6 @@ Strings represent text, surrouded by quotes like "this bit of text".
 (+) can be used to concatenate strings. "this is a con" + "catenated string" produces "this is a concatenated string".
 
 ### Unary operator
-`typeof` is a unary operator in that it only takes one value and produces a result. For instance, console.log(typeof "x") --> "string".
+`typeof` is a unary operator in that it only takes one value and produces a result. For instance, `console.log(typeof "x") --> "string"`.
 
 ### Boolean values
