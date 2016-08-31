@@ -14,7 +14,7 @@ Infinity and -Infinity are also numbers, as is NaN.
 Strings represent text, surrouded by quotes like "this bit of text".
 
 
-(\) escapes the next character. Using this, you can add newlines (\n), tabs (\t) and quotes (\") to a string.
+(\\) escapes the next character. Using this, you can add newlines (\n), tabs (\t) and quotes (\") to a string.
 
 (+) can be used to concatenate strings. "this is a con" + "catenated string" produces "this is a concatenated string".
 
