@@ -21,3 +21,9 @@ One type of variable is a *function*. A function can be *invoked*, *called* or *
 
 ## Return values
 When a function produces a value, it is said to *return* that value. Anything that produces a value is an expression in javascript, which means function calls can be used within larger expressions, like so: `console.log(Math.min(2, 4) + 100)` produces `102`.
+
+## Conditional execution
+There are several ways in which you can execute pieces of code conditionally. For this, you can use `if`, `else if` and `else`, `while`, `do`, and `for`. You can break out of a loop using `break`, or you can jump to a new iteration of the loop using `continue`.
+
+## Updating variables succinctly
+`a = a + 1;` is equivalent to `a += 1;`, which is equivalent to `a++;`.
