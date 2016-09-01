@@ -2,11 +2,11 @@
 	'use strict';
 
 	// http://eloquentjavascript.net/02_program_structure.html#loops
-	function toThePower(base, power) {
+	var toThePower = function toThePower(base, power) {
 		for (var counter = 0, result = 1; counter < power; counter ++)
 			result *= base;
 		return result;
-	}
+	};
 
 	// console.log(toThePower(2, 10));
 	// 1024
@@ -16,7 +16,7 @@
 	//
 
 	//  Looping a triangle
-	function buildTriangle(baseSize) {
+	var buildTriangle = function buildTriangle(baseSize) {
 		for (var triangleCounter = 0; triangleCounter <= baseSize; triangleCounter++) {
 			var triangleLayer = '';
 			for (var layerCounter = 0; layerCounter < triangleCounter; layerCounter++) {
@@ -24,12 +24,12 @@
 			}
 			console.log(triangleLayer);
 		}
-	}
+	};
 
 	// buildTriangle(7);
 
 	// FizzBuzz
-	function fizzBuzz(countTo) {
+	var fizzBuzz = function fizzBuzz(countTo) {
 		for (var counter = 1; counter <= countTo; counter++) {
 			if (counter % 3 === 0) {
 				if (counter % 5 === 0) {
@@ -43,12 +43,12 @@
 				console.log(counter);
 			}
 		}
-	}
+	};
 
 	// fizzBuzz(100);
 
 	// Chess board
-	function chessBoard(sizeOfGrid) {
+	var chessBoard = function chessBoard(sizeOfGrid) {
 		var gridString = '';
 		for (var counter = 0; counter < sizeOfGrid; counter++) {
 			for (var stringCounter = 0; stringCounter < sizeOfGrid; stringCounter++) {
@@ -69,7 +69,7 @@
 			gridString += '\n';
 		}
 		return gridString;
-	}
+	};
 
 	console.log(chessBoard(3));
 
