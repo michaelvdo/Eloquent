@@ -3,10 +3,7 @@
 
 	// Minimum
 	var min = function min(a, b) {
-		if (b < a)
-			return b;
-		else
-			return a;
+		return b < a ? b : a;
 	};
 
 	console.log(min(0, 10));		// 0
@@ -38,7 +35,7 @@
 		return counter;
 	};
 
-	console.log(countChar('BBC', 'B'));		// 2
+	console.log(countChar('BBC', 'B'));					// 2
 	console.log(countChar('kakkerlak', 'k'));		// 4
 
 })();
