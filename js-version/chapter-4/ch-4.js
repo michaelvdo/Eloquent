@@ -42,22 +42,19 @@
 	//
 	var reverseArray = function reverseArray(array) {
 		var arrayLength = array.length,
-				oldArray    = array.slice(),
-				newArray    = [];
+				reversedArray    = [];
 
 		for (var i = 0; i < arrayLength; i++) {
-			newArray.push(oldArray.pop());
+			reversedArray.unshift(array[i]);
 		}
-		return newArray;
+		return reversedArray;
 	};
 
 	var reverseArrayInPlace = function reverseArrayInPlace(array) {
-		var arrayLength = array.length,
-				newArray    = [];
+		var arrayLength = array.length;
 
-		for (var i = 0; i < arrayLength; i++)
-			newArray.push(array.pop());
-		array.push(newArray);
+		for (var i = arrayLength - 2; i >= 0; i--)
+			array.splice(arrayLength, 0, array.splice(i, 1));
 	};
 
 	// var array = [1, 2, 3, 4, 5];
@@ -71,24 +68,52 @@
 	// A list
 	//
 
+	// Old setup for arrayToList. Works fine, but can't work with the prepend
+	// function.
+
+	// var arrayToList = function arrayToList(array) {
+	// 	var obj = {},
+	// 			arr = array.slice();
+	//
+	// 	obj.value = arr.shift();
+	// 	obj.rest = arr.length === 0 ? null : arrayToList(arr);
+	//
+	// 	return obj;
+	// };
+
+	var prepend = function prepend(element, list) {
+		return {value: element, rest: list};
+	};
+
+	var nth = function nth(list, number) {
+		if (list)
+			return number === 0 ? list.value : nth(list.rest, number - 1);
+		else
+			return undefined;
+	};
+
 	var arrayToList = function arrayToList(array) {
-		var obj = {},
-				arr = array.slice();
-
-		obj.value = arr.shift();
-		obj.rest = arr.length === 0 ? null : arrayToList(arr);
-
-		return obj;
+		var list = null;
+		for (var i = array.length - 1; i >= 0; i--)
+			list = prepend(array[i], list);
+		return list;
 	};
 
 	var listToArray = function listToArray(list) {
-		var arr = [],
-				obj = list;
+		var arr  = [],
+				test = true;
 
-
+		for (var i = 0; test; i++) {
+			test = nth(list, i);
+			if (test)
+				arr.push(test);
+		}
+		return arr;
 	};
 
-	console.log(arrayToList([10, 20]));
+	// console.log(arrayToList([10, 20]));
+	// console.log(listToArray(arrayToList([10, 20, 30])));
+	// console.log(nth(arrayToList([10, 20, 30]), 1));
 
 	//
 	// Deep comparison
