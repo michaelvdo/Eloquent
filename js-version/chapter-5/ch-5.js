@@ -61,15 +61,35 @@
 
 	// console.log(ancestry);
 
-	var hasMother = function hasMother(array) {
-		var arr = [];
+	var mothersAndChildren = function mothersAndChildren(array) {
+		var childrenWithMother = [],
+				mothers            = [];
+
+		// Create arrays for children with mothers and mothers with children
 		array.forEach(function(currentValue) {
-			if (JSON.parse(currentValue).mother)
-				arr.push(JSON.parse(currentValue).name);
+			if (JSON.parse(currentValue).mother) {
+				childrenWithMother.push(JSON.parse(currentValue).name);
+				mothers.push(JSON.parse(currentValue).mother);
+			}
 		});
-		return arr;
+
+		console.log(childrenWithMother);
+		console.log(mothers);
+
+		bornDates(childrenWithMother, mothers);
+
 	};
 
-	console.log(hasMother(ancestry));
+	var bornDates = function bornDates(childrenArray, mothersArray) {
+		childrenArray.forEach(function(currentValue, index) {
+			if (byName[currentValue].born && byName[mothersArray[index]].born)
+				console.log("heyo!");
+		});
+	};
+
+	// console.log(mothersAndChildren(ancestry));
+	mothersAndChildren(ancestry);
+	console.log(byName);
+
 
 })();
