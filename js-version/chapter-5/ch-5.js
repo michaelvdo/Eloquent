@@ -48,6 +48,7 @@
 	// Mother-child age difference
 	//
 
+	// helper functions && object
 	var average = function average(array) {
 		function plus(a, b) { return a + b; }
 		return array.reduce(plus) / array.length;
@@ -59,8 +60,7 @@
 		byName[person.name] = person;
 	});
 
-	// console.log(ancestry);
-
+	// custom functions
 	var mothersAndChildren = function mothersAndChildren(array) {
 		var childrenWithMother = [],
 				mothers            = [];
@@ -72,24 +72,40 @@
 				mothers.push(JSON.parse(currentValue).mother);
 			}
 		});
-
-		console.log(childrenWithMother);
-		console.log(mothers);
-
-		bornDates(childrenWithMother, mothers);
-
+		// log all mother-and-child pairs' age difference
+		return bornDateDifferences(childrenWithMother, mothers);
 	};
 
-	var bornDates = function bornDates(childrenArray, mothersArray) {
+	// Calculate (and return in an array) the age difference of all mother-child
+	// pairs
+	var bornDateDifferences = function bornDateDifferences(childrenArray, mothersArray) {
+		var averageAges = [];
 		childrenArray.forEach(function(currentValue, index) {
-			if (byName[currentValue].born && byName[mothersArray[index]].born)
-				console.log("heyo!");
+			// If a born date exists for both the mother and the child...
+			if (byName[currentValue].born && (byName[mothersArray[index]] && byName[mothersArray[index]].born))
+				// ...subtract the birth date of the mother of that of the child, and store the (age) difference
+				averageAges.push(byName[currentValue].born - byName[mothersArray[index]].born);
 		});
+
+		return averageAges;
 	};
 
-	// console.log(mothersAndChildren(ancestry));
-	mothersAndChildren(ancestry);
-	console.log(byName);
+	// Function that returns the average value of an array of values
+	var averageOfArray = function averageOfArray(array) {
+		var average = 0;
+		array.forEach(function(currentValue) {
+			average += currentValue;
+		});
+		return average / array.length;
+	};
 
+	console.log(averageOfArray(mothersAndChildren(ancestry)));
+
+
+	//
+	// Historical life expectancy
+	//
+
+	
 
 })();
