@@ -1,111 +1,65 @@
 ;(function() {
 	'use strict';
 
-	// function filter(array, test) {
-	// 	var passed = [];
-	// 	for (var i = 0; i < array.length; i++) {
-	// 		if (test(array[i])) {
-	// 			passed.push(array[i]);
-	// 		}
-	// 	}
-	// 	return passed;
-	// }
 	//
-	// console.log(filter(ancestry, function(person) {
-	// 	person = JSON.parse(person);
-	// 	return person.born > 1900 && person.born < 1925;
-	// }));
-
-	// var arrayYoung = ancestry.filter(function(person) {
-	// 	person = JSON.parse(person);
-	// 	return person.born > 1900 && person.born < 1925;
-	// });
-	//
-	// console.log(arrayYoung);
-	//
-	// var arrayYoungNames = arrayYoung.map(function(obj) {
-	// 	return JSON.parse(obj).name;
-	// });
-	//
-	// console.log(arrayYoungNames);
-
-	//
-	// Flattening
-	//
-
-	var arrays = [[1, 2, 3], [4, 5], [6]];
-
-	var flattening = function flattening(array) {
-		return array.reduce(function(previousValue, currentValue, currentIndex) {
-			return previousValue.concat(currentValue);
-		});
-	};
-
-	// console.log(flattening(arrays));
-
-
-	//
-	// Mother-child age difference
-	//
-
 	// helper functions && object
+	//
 	var average = function average(array) {
 		function plus(a, b) { return a + b; }
 		return array.reduce(plus) / array.length;
 	};
 
+	// JSON.parse every string in the ancestry array
+	var ANCESTRY_ARRAY = [];
+
+	ancestry.forEach(function(element) {
+		ANCESTRY_ARRAY.push(JSON.parse(element));
+	});
+
 	var byName = {};
-	ancestry.forEach(function(person) {
-		person = JSON.parse(person);
+	ANCESTRY_ARRAY.forEach(function(person) {
 		byName[person.name] = person;
 	});
 
-	// custom functions
-	var mothersAndChildren = function mothersAndChildren(array) {
-		var childrenWithMother = [],
-				mothers            = [];
+	//
+	// Flattening
+	//
 
-		// Create arrays for children with mothers and mothers with children
-		array.forEach(function(currentValue) {
-			if (JSON.parse(currentValue).mother) {
-				childrenWithMother.push(JSON.parse(currentValue).name);
-				mothers.push(JSON.parse(currentValue).mother);
-			}
-		});
-		// log all mother-and-child pairs' age difference
-		return bornDateDifferences(childrenWithMother, mothers);
+	var arrays = [0, [1, 2, 3], [4, 5], [6]];
+	var arrays2 = [0, [1, [2, [3, [4, [5]]]]]];
+
+	var flattening = function flattening(array) {
+		return array.reduce(function(previousValue, currentValue) {
+			return previousValue.concat(Array.isArray(currentValue) ? flattening(currentValue) : currentValue);
+		}, []);
 	};
 
-	// Calculate (and return in an array) the age difference of all mother-child
-	// pairs
-	var bornDateDifferences = function bornDateDifferences(childrenArray, mothersArray) {
-		var averageAges = [];
-		childrenArray.forEach(function(currentValue, index) {
-			// If a born date exists for both the mother and the child...
-			if (byName[currentValue].born && (byName[mothersArray[index]] && byName[mothersArray[index]].born))
-				// ...subtract the birth date of the mother of that of the child, and store the (age) difference
-				averageAges.push(byName[currentValue].born - byName[mothersArray[index]].born);
-		});
+	// console.log(flattening(arrays));
+	// console.log(flattening(arrays2));
 
-		return averageAges;
+	//
+	// Mother-child age difference
+	//
+
+	// Filter that returns only the people who have a mother with a born year
+	var hasMotherWithBornYear = function hasMotherWithBornYear(person) {
+		var motherBornYear = typeof byName[person.mother] !== 'undefined' ? byName[person.mother].born : 0;
+		return motherBornYear;
 	};
 
-	// Function that returns the average value of an array of values
-	var averageOfArray = function averageOfArray(array) {
-		var average = 0;
-		array.forEach(function(currentValue) {
-			average += currentValue;
-		});
-		return average / array.length;
+	var ageDifference = function ageDifference(array, person) {
+		return array.concat(person.born - byName[person.mother].born);
 	};
 
-	console.log(averageOfArray(mothersAndChildren(ancestry)));
+	// Log the average age difference between the children and their mothers, if they both have a born year in the dataset
+	// console.log(average(ANCESTRY_ARRAY.filter(hasMotherWithBornYear).reduce(ageDifference, [])));
 
 
 	//
 	// Historical life expectancy
 	//
 
-	
+	// Taking all the people in the dataset who have a date of death,
+
 
 })();
