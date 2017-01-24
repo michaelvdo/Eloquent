@@ -1,22 +1,20 @@
+/*jshint esversion: 6 */
 ;(function() {
 	'use strict';
+
 
 	//
 	// helper functions && object
 	//
-	var average = function average(array) {
-		function plus(a, b) { return a + b; }
-		return array.reduce(plus) / array.length;
-	};
+	const average = array => array.reduce((a, b) => a + b) / array.length;
 
 	// JSON.parse every string in the ancestry array
-	var ANCESTRY_ARRAY = [];
-
+	let ANCESTRY_ARRAY = [];
 	ancestry.forEach(function(element) {
 		ANCESTRY_ARRAY.push(JSON.parse(element));
 	});
 
-	var byName = {};
+	let byName = {};
 	ANCESTRY_ARRAY.forEach(function(person) {
 		byName[person.name] = person;
 	});
@@ -25,10 +23,10 @@
 	// Flattening
 	//
 
-	var arrays = [0, [1, 2, 3], [4, 5], [6]];
-	var arrays2 = [0, [1, [2, [3, [4, [5]]]]]];
+	let arrays = [0, [1, 2, 3], [4, 5], [6]];
+	let arrays2 = [0, [1, [2, [3, [4, [5]]]]]];
 
-	var flattening = function flattening(array) {
+	const flattening = function flattening(array) {
 		return array.reduce(function(previousValue, currentValue) {
 			return previousValue.concat(Array.isArray(currentValue) ? flattening(currentValue) : currentValue);
 		}, []);
@@ -42,14 +40,11 @@
 	//
 
 	// Filter that returns only the people who have a mother with a born year
-	var hasMotherWithBornYear = function hasMotherWithBornYear(person) {
-		var motherBornYear = typeof byName[person.mother] !== 'undefined' ? byName[person.mother].born : 0;
-		return motherBornYear;
-	};
+	const hasMotherWithBornYear = person =>
+		typeof byName[person.mother] !== 'undefined' ? byName[person.mother].born : 0;
 
-	var ageDifference = function ageDifference(array, person) {
-		return array.concat(person.born - byName[person.mother].born);
-	};
+	const ageDifference = (array, person) =>
+		array.concat(person.born - byName[person.mother].born);
 
 	// Log the average age difference between the children and their mothers, if they both have a born year in the dataset
 	// console.log(average(ANCESTRY_ARRAY.filter(hasMotherWithBornYear).reduce(ageDifference, [])));
@@ -59,7 +54,57 @@
 	// Historical life expectancy
 	//
 
-	// Taking all the people in the dataset who have a date of death,
+	let peopleByCentury = {};
+
+	const century = yearOfDeath => Math.ceil(yearOfDeath / 100);
+
+	const age = person => person.died - person.born;
+
+	const updatePeopleByCentury = (personCentury, personAge) =>
+		peopleByCentury[personCentury] === undefined ? peopleByCentury[personCentury] = [personAge] : peopleByCentury[personCentury] = peopleByCentury[personCentury].concat(personAge);
+
+	ANCESTRY_ARRAY.forEach(person => {
+		let personCentury = century(person.died),
+				personAge = age(person);
+		updatePeopleByCentury(personCentury, personAge);
+	});
+
+	const printCenturyAverages = obj => {
+		for (let cent in obj) {
+			console.log(average(obj[cent]));
+		}
+	};
+
+	// printCenturyAverages(peopleByCentury);
+
+	//
+	// Every and then some
+	//
+
+	const every = (array, fn) => {
+		let validation = true,
+				i = 0;
+		while (validation && i < array.length) {
+			validation = fn(array[i]);
+			i++;
+		}
+		return validation;
+	};
+
+	const some = (array, fn) => {
+		let validation = false,
+				i = 0;
+		while (!validation && i < array.length) {
+			validation = fn(array[i]);
+			i++;
+		}
+		return validation;
+	};
+
+	console.log(every([NaN, NaN, NaN], isNaN)); // true
+	console.log(every([NaN, NaN, 4], isNaN)); // false
+	console.log(some([NaN, 3, 4], isNaN)); // true
+	console.log(some([2, 3, 4], isNaN)); // false
 
 
 })();
