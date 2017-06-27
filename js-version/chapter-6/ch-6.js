@@ -31,6 +31,10 @@
 	console.log(new Vector(1, 2).minus(new Vector(2, 3))); // Vector{x: -1, y: -1}
 	console.log(new Vector(3, 4).length); // 5
 
+	let foo = new Vector(1, 2);
+	console.log('foo:', foo);
+	console.log('Vector.prototype === Object.getPrototypeOf(foo)?', Vector.prototype === Object.getPrototypeOf(foo));
+
 	//
 	// Another cell
 	//
@@ -57,6 +61,39 @@
 
 	//
 	// Sequence interface
-	// 
+	//
+
+	// Interface
+	const Sequence = function() {};
+
+	// Sequence.prototype.get
+
+	Object.defineProperty(Sequence.prototype, 'sequence', {
+		get: function() {
+			return this.sequence;
+		}
+	});
+
+	// logFive
+	const logFive = (seqObj) => {
+		const seqObjSequence = seqObj.sequence,
+					arrayLength = seqObjSequence.length,
+					iterationLength = Math.min(4, arrayLength - 1);
+		for (let i = 0; i <= iterationLength; i++) {
+			console.log(seqObjSequence[i]);
+		}
+	};
+
+	// ArraySeq
+	const ArraySeq = function(array) {
+		this.value = array;
+	};
+
+	// ArraySeq.prototype.
+
+	// RangeSeq
+	const RangeSeq = function(from, to) {
+		// this.value =
+	};
 
 })();
