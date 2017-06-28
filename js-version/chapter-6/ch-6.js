@@ -102,10 +102,6 @@
 	ArraySeq.prototype = new Sequence();
 	ArraySeq.prototype.constructor = ArraySeq;
 
-	ArraySeq.prototype.reset = function() {
-		this.clonedValue = this.value.slice();
-	};
-
 	// RangeSeq
 	// Source: http://www.jstips.co/en/javascript/create-range-0...n-easily-using-one-line/
 	const RangeSeq = function(from, to) {
@@ -118,7 +114,6 @@
 	RangeSeq.prototype = new Sequence();
 	RangeSeq.prototype.constructor = RangeSeq;
 
-	logFive(new ArraySeq([1, 2]));
 	logFive(new ArraySeq([1, 2]));
 	logFive(new RangeSeq(100, 1000));
 
