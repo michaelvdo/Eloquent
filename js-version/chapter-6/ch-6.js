@@ -66,7 +66,17 @@
 	// Interface
 	const Sequence = function() {};
 
-	// Sequence.prototype.get
+	Sequence.prototype.reset = function() {
+		this.clonedValue = this.value.slice();
+	};
+
+	Sequence.prototype.next = function() {
+		if (this.clonedValue.length === 0) {
+			return false;
+		} else {
+			return this.clonedValue.splice(0, 1);
+		}
+	};
 
 	Object.defineProperty(Sequence.prototype, 'sequence', {
 		get: function() {
@@ -76,11 +86,16 @@
 
 	// logFive
 	const logFive = (seqObj) => {
-		const seqObjSequence = seqObj.sequence,
-					arrayLength = seqObjSequence.length,
-					iterationLength = Math.min(4, arrayLength - 1);
-		for (let i = 0; i <= iterationLength; i++) {
-			console.log(seqObjSequence[i]);
+		seqObj.reset();
+		let itemsLeft = true,
+				i = 1;
+		while (itemsLeft && i <=5) {
+			let nextItem = seqObj.next();
+			itemsLeft = nextItem;
+			if (itemsLeft) {
+				console.log(nextItem[0]);
+				i++;
+			}
 		}
 	};
 
@@ -89,11 +104,26 @@
 		this.value = array;
 	};
 
-	// ArraySeq.prototype.
+	ArraySeq.prototype = new Sequence();
+	ArraySeq.prototype.constructor = ArraySeq;
+
+	ArraySeq.prototype.reset = function() {
+		this.clonedValue = this.value.slice();
+	};
 
 	// RangeSeq
+	// Source: http://www.jstips.co/en/javascript/create-range-0...n-easily-using-one-line/
 	const RangeSeq = function(from, to) {
-		// this.value =
+		const length = Math.abs(from - to); // Get abs. difference between from & to
+		this.value = Array.apply(null, {length: length + 1}).map(function(value, index) {
+			return index + from;
+		});
 	};
+
+	RangeSeq.prototype = new Sequence();
+	RangeSeq.prototype.constructor = RangeSeq;
+
+	logFive(new ArraySeq([1, 2]));
+	logFive(new RangeSeq(100, 1000));
 
 })();
