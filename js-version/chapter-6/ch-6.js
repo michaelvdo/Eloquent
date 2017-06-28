@@ -78,12 +78,6 @@
 		}
 	};
 
-	Object.defineProperty(Sequence.prototype, 'sequence', {
-		get: function() {
-			return this.sequence;
-		}
-	});
-
 	// logFive
 	const logFive = (seqObj) => {
 		seqObj.reset();
@@ -104,6 +98,7 @@
 		this.value = array;
 	};
 
+	// Source for following code; http://tobyho.com/2010/11/22/javascript-constructors-and/
 	ArraySeq.prototype = new Sequence();
 	ArraySeq.prototype.constructor = ArraySeq;
 
@@ -123,6 +118,7 @@
 	RangeSeq.prototype = new Sequence();
 	RangeSeq.prototype.constructor = RangeSeq;
 
+	logFive(new ArraySeq([1, 2]));
 	logFive(new ArraySeq([1, 2]));
 	logFive(new RangeSeq(100, 1000));
 
