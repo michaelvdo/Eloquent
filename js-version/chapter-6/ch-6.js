@@ -99,8 +99,10 @@
 	};
 
 	// Source for following code; http://tobyho.com/2010/11/22/javascript-constructors-and/
-	ArraySeq.prototype = new Sequence();
-	ArraySeq.prototype.constructor = ArraySeq;
+	// ArraySeq.prototype = new Sequence();
+	// ArraySeq.prototype.constructor = ArraySeq;
+
+	ArraySeq.prototype = Object.create(Sequence.prototype);
 
 	// RangeSeq
 	// Source: http://www.jstips.co/en/javascript/create-range-0...n-easily-using-one-line/
